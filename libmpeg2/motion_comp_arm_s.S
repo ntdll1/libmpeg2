@@ -31,7 +31,8 @@ MC_put_o_16_arm:
 	and r4, r1, #3
 	adr r5, MC_put_o_16_arm_align_jt
 	add r5, r5, r4, lsl #2
-	ldr pc, [r5]
+	ldr r4, [r5]
+	add pc, r4, r5
 
 MC_put_o_16_arm_align0:
 	ldmia r1, {r4-r7}
@@ -76,10 +77,10 @@ MC_put_o_16_arm_align3:
 	bne 1b
         ldmfd sp!, {r4-r11, pc} @@ update PC with LR content.
 MC_put_o_16_arm_align_jt:
-	.word MC_put_o_16_arm_align0
-	.word MC_put_o_16_arm_align1
-	.word MC_put_o_16_arm_align2
-	.word MC_put_o_16_arm_align3
+	.word MC_put_o_16_arm_align0 - .
+	.word MC_put_o_16_arm_align1 - .
+	.word MC_put_o_16_arm_align2 - .
+	.word MC_put_o_16_arm_align3 - .
 
 @ ----------------------------------------------------------------
 	.align
@@ -91,7 +92,8 @@ MC_put_o_8_arm:
 	and r4, r1, #3
 	adr r5, MC_put_o_8_arm_align_jt
 	add r5, r5, r4, lsl #2
-	ldr pc, [r5]
+	ldr r4, [r5]
+	add pc, r4, r5
 MC_put_o_8_arm_align0:
 	ldmia r1, {r4-r5}
 	add r1, r1, r2
@@ -134,10 +136,10 @@ MC_put_o_8_arm_align3:
         ldmfd sp!, {r4-r10, pc} @@ update PC with LR content.
 
 MC_put_o_8_arm_align_jt:
-	.word MC_put_o_8_arm_align0
-	.word MC_put_o_8_arm_align1
-	.word MC_put_o_8_arm_align2
-	.word MC_put_o_8_arm_align3
+	.word MC_put_o_8_arm_align0 - .
+	.word MC_put_o_8_arm_align1 - .
+	.word MC_put_o_8_arm_align2 - .
+	.word MC_put_o_8_arm_align3 - .
 
 @ ----------------------------------------------------------------
 .macro	AVG_PW rW1, rW2
@@ -162,7 +164,8 @@ MC_put_x_16_arm:
 	ldr r11, [r5]
 	mvn r12, r11
 	add r5, r5, r4, lsl #2
-	ldr pc, [r5, #4]
+	ldr r4, [r5]
+	add pc, r4, r5
 
 .macro	ADJ_ALIGN_QW shift, R0, R1, R2, R3, R4
 	mov \R0, \R0, lsr #(\shift)
@@ -237,10 +240,10 @@ MC_put_x_16_arm_align3:
         ldmfd sp!, {r4-r11,pc} @@ update PC with LR content.
 MC_put_x_16_arm_align_jt:
 	.word 0x01010101
-	.word MC_put_x_16_arm_align0
-	.word MC_put_x_16_arm_align1
-	.word MC_put_x_16_arm_align2
-	.word MC_put_x_16_arm_align3
+	.word MC_put_x_16_arm_align0 - .
+	.word MC_put_x_16_arm_align1 - .
+	.word MC_put_x_16_arm_align2 - .
+	.word MC_put_x_16_arm_align3 - .
 
 @ ----------------------------------------------------------------
 	.align
@@ -254,7 +257,8 @@ MC_put_x_8_arm:
 	ldr r11, [r5]
 	mvn r12, r11
 	add r5, r5, r4, lsl #2
-	ldr pc, [r5, #4]
+	ldr r4, [r5]
+	add pc, r4, r5
 
 .macro	ADJ_ALIGN_DW shift, R0, R1, R2
 	mov \R0, \R0, lsr #(\shift)
@@ -317,7 +321,7 @@ MC_put_x_8_arm_align3:
         ldmfd sp!, {r4-r11,pc} @@ update PC with LR content.
 MC_put_x_8_arm_align_jt:
 	.word 0x01010101
-	.word MC_put_x_8_arm_align0
-	.word MC_put_x_8_arm_align1
-	.word MC_put_x_8_arm_align2
-	.word MC_put_x_8_arm_align3
+	.word MC_put_x_8_arm_align0 - .
+	.word MC_put_x_8_arm_align1 - .
+	.word MC_put_x_8_arm_align2 - .
+	.word MC_put_x_8_arm_align3 - .
